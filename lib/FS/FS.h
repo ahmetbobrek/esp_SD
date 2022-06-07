@@ -60,7 +60,7 @@ File(FileImpl p=FileImplPtr()) : _p(p){
 protected:
 FileImplPtr _p;
 
-}
+};
 
 
 

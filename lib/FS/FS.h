@@ -14,17 +14,19 @@ typedef std::shared_ptr<FileImpl>FileImplPtr;
 class FSImpl;
 typedef std::shared_ptr<FSImpl>FSImplPtr;
 
-enum SeekMMode{
+enum SeekMode{
     SeekSet=0,
     SeekCur=1,
     SeekEnd=2
     };
-/*class File : public Stream
+
+class File  :   public Stream
 {
 public:
-    File(FileImplPtr p = FileImplPtr()) : _p(p) {
-        _timeout = 0;
-    }
+
+File(FileImpl p=FileImplPtr()) : _p(p){
+    _timeout=0;
+}
 
     size_t write(uint8_t) override;
     size_t write(const uint8_t *buf, size_t size) override;
@@ -32,17 +34,17 @@ public:
     int read() override;
     int peek() override;
     void flush() override;
-    size_t read(uint8_t* buf, size_t size);
-    size_t readBytes(char *buffer, size_t length)
+    size_t read(uint8_t* buf,size_t size);   
+    size_t readBytes(char *buffer,size_t length)
     {
-        return read((uint8_t*)buffer, length);
+        return read((uint8_t*)buffer,length);
     }
-
     bool seek(uint32_t pos, SeekMode mode);
     bool seek(uint32_t pos)
     {
-        return seek(pos, SeekSet);
+        return seek(pos,SeekSet);
     }
+  
     size_t position() const;
     size_t size() const;
     void close();
@@ -51,12 +53,15 @@ public:
     const char* name() const;
 
     boolean isDirectory(void);
-    File openNextFile(const char* mode = FILE_READ);
+    File openNextFile(const char* mode=FILE_READ);
     void rewindDirectory(void);
 
+
 protected:
-    FileImplPtr _p;
-};*/
+FileImplPtr _p;
+
+}
+
 
 
 

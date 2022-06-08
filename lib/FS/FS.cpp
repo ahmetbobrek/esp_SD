@@ -2,6 +2,7 @@
 #include "FSImpl.h"
 
 using namespace fs;
+
 size_t File::write(uint8_t c)
 {
     if(!_p)
@@ -237,7 +238,6 @@ bool FS::rmdir(const String &path)
 {
     return rmdir(path.c_str());
 }
-
 
 void FSImpl::mountpoint(const char * mp)
 {

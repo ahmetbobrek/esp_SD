@@ -24,9 +24,10 @@ class File  :   public Stream
 {
 public:
 
-File(FileImpl p=FileImplPtr()) : _p(p){
-    _timeout=0;
-}
+
+File(FileImplPtr p=FileImplPtr()) : _p(p){
+        _timeout=0;
+    }
 
     size_t write(uint8_t) override;
     size_t write(const uint8_t *buf, size_t size) override;
@@ -62,14 +63,45 @@ FileImplPtr _p;
 
 };
 
+class FS
+{
+public:
+    FS(FSImplPtr impl): _impl(impl){}
+    File open(const char* path,const char* mode=FILE_READ);
+    File open(const String& path,const char* mode=FILE_READ);
+
+    bool exists(const char* path);
+    bool exists(const String& path);
+
+    bool remove(const char* path);
+    bool remove(const String& path);
+
+    bool rename(const char* pathFrom, const char* pathTo);
+    bool rename(const String& pathFrom,const String& pathTo);
+    /*bool mkdir(const char *path);
+    bool mkdir(const String &path);
+
+    bool rmdir(const char *path);
+    bool rmdir(const String &path);*/
+   
+    bool mkdir(const char *path);
+    bool mkdir(const String &path);
+
+    bool rmdir(const char *path);
+    bool rmdir(const String &path);
 
 
-
-
-
-
-
-}//namespace fs
-
+protected:
+    FSImplPtr _impl;
+};
+}
+#ifndef FS_NO_GLOBALS
+using fs::FS;
+using fs::File;
+using fs::SeekMode;
+using fs::SeekSet;
+using fs::SeekCur;
+using fs::SeekEnd;
+#endif //FS_NO_GLOBALS
 
 #endif // FS_H

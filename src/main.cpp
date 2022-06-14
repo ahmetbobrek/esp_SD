@@ -18,19 +18,7 @@ void printLocalTime()
   // Serial.printf("%s\n",asctime(timeinfo));
   delay(2); // 26 bytes@115200 baud is less than 2 ms
 }
-/*void updateTime (uint64_t elapsedTime) { // elapsedTime in us
-  if (elapsedTime == 0) Mics += micros();
-  else Mics += elapsedTime;
-  if (Mics > 1000000) {
-    Mics = Mics % 1000000;
-    now += Mics / 1000000;
-  }
-}
-void sommeil (unsigned long chrono) {
-  updateTime (sleepPeriod - (micros() - chrono) + OFFSET);
-  esp_sleep_enable_timer_wakeup(sleepPeriod - (micros() - chrono));
-  esp_deep_sleep_start();
-}*/
+
 void updateTime(uint64_t elapsedTime)
 { // elapsedTime in us
   if (elapsedTime == 0)
@@ -98,14 +86,7 @@ else{
   Serial.println("Mkdir failed");
 }
 }
-/*void removeDir(fs::FS &fs, const char * path) {
-  Serial.printf("Removing Dir: %s\n", path);
-  if (fs.rmdir(path)) {
-    Serial.println("Dir removed");
-  } else {
-    Serial.println("rmdir failed");
-  }
-}*/
+
 void removeDir(fs::FS &fs,const char* path){
   Serial.printf("Removing Dir:%s\n",path);
   if (fs.rmdir(path))
